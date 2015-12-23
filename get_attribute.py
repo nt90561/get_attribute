@@ -1,6 +1,8 @@
+#!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 import csv
 import os
+
 
 def _get_court(text):
     #法院別
@@ -8,6 +10,7 @@ def _get_court(text):
         line = line.decode('utf-8')
         if line[0:3] in (u"\"臺灣", u"\"台灣", u"\"福建"):
             return line[3:9].encode('utf-8')
+
 
 def get_num_date_cu(text):
     #字號 日期 法院別
@@ -22,6 +25,7 @@ def get_num_date_cu(text):
     #回傳list
     return NDC
 
+
 def get_law(text):
     text.seek(0, 0)
     for line in text:
@@ -30,6 +34,7 @@ def get_law(text):
             law_name = line[line.find(u"因")+1:line.find(u"案件")]
             #回傳str
             return law_name.encode('utf-8')
+
 
 def get_accused(text, tag=1):
     text.seek(0, 0)
